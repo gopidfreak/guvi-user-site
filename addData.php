@@ -21,7 +21,7 @@ if (mysqli_connect_error()){
 }
 else{
 //Prepare statement
-     $stmt = $conn->prepare("SELECT Email_Id From userinformation Where Email_Id = ? Limit 1");
+     $stmt = $conn->prepare("SELECT Email_Id From userInformation Where Email_Id = ? Limit 1");
      $stmt->bind_param("s", $email);
      $stmt->execute();
      $stmt->bind_result($email);
@@ -30,7 +30,7 @@ else{
      //checking username
       if ($rnum==0) {
       $stmt->close();
-      $stmt = $conn->prepare("INSERT INTO userinformation (`UserName`, `Email_Id`, `Password`) VALUES (?,?,?)");
+      $stmt = $conn->prepare("INSERT INTO userInformation (`UserName`, `Email_Id`, `Password`) VALUES (?,?,?)");
       $stmt->bind_param("sss", $uname,$email,$pass);
       $stmt->execute();
       echo "1";
