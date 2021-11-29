@@ -5,10 +5,10 @@ $pass = $_POST['password'];
 
 if (!empty($email) || !empty($pass) )
 {
-$host = "192.168.30.23";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "user_data";
+$host = "db4free.net";
+$dbusername = "gopidfreak";
+$dbpassword = "gopiishu1730";
+$dbname = "userdataguvi";
 
 // Create connection
 $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
