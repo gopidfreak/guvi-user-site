@@ -157,8 +157,14 @@
                         Data = httpr.responseText;
                             document.getElementById('signin').reset();
                             localStorage.setItem("logedUser",email)
-                            alert(Data);
-                            window.location.href ="./welcome.html";
+                            if(Data =='1'){
+                                alert("Logged In Successfully!");
+                                window.location.href ="./welcome.html";
+                            }
+                            else
+                            {
+                                alert("Email Id already Exists!");
+                            }
                     }
                 }
             }
