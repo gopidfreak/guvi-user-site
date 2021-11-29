@@ -18,7 +18,7 @@ if (mysqli_connect_error()){
     . mysqli_connect_error());
 }
 else{
-		$check = "SELECT `Email_Id`, `Password`  FROM `userinformation` where Email_Id='$email' AND Password='$pass'";
+		$check = "SELECT `Email_Id`, `Password`  FROM `userInformation` where Email_Id='$email' AND Password='$pass'";
 		$check_work= mysqli_query($conn,$check);
 		if($check_work){
 			if(mysqli_num_rows($check_work) > 0 ){	
