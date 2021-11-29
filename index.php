@@ -1,4 +1,4 @@
 <?php 
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Origin: *');
 include_once('./home.html');
 ?>
