@@ -120,7 +120,7 @@
             if (age && gender && contact && address) {
                 if(age>15 && age <100)
                 {
-                    if(contact<=10)
+                    if(contact.length<=10)
                     {
                 var httpr = new XMLHttpRequest();
                 httpr.open("POST","./update.php",true);
