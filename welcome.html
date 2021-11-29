@@ -118,6 +118,10 @@
                 document.getElementById('addr').placeholder = 'Address is Required';
             }
             if (age && gender && contact && address) {
+                if(age>15 && age <100)
+                {
+                    if(contact<=10)
+                    {
                 var httpr = new XMLHttpRequest();
                 httpr.open("POST","./update.php",true);
                 httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -130,6 +134,12 @@
                     }
                 }
                 httpr.send("age="+age+"&gender="+gender+"&contact="+contact+"&address="+address+"&email="+getName);
+                    }
+                }
+                else
+                {
+                    alert("Invalid Credentials");
+                }
             }
         }
         //on keyup
