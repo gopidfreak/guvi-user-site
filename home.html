@@ -149,24 +149,18 @@
                 var httpr = new XMLHttpRequest();
                 httpr.open("POST","./addData.php",true);
                 httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                httpr.send("username="+name+"&email="+email+"&password="+password);
                 httpr.onreadystatechange=function(){
                     if(httpr.readyState==4 && httpr.status==200)
                     {
                         console.log(httpr.responseText);
                         Data = httpr.responseText;
-                        if(Data=="1")
-                        {
                             document.getElementById('signin').reset();
                             localStorage.setItem("logedUser",email)
-                            alert("Logged In Successfully");
+                            alert(Data);
                             window.location.href ="./welcome.html";
-                        }
-                        else{
-                            alert("Email Already Exists!");
-                        }
                     }
                 }
-                httpr.send("username="+name+"&email="+email+"&password="+password);
             }
         }
         function nameValidate()
