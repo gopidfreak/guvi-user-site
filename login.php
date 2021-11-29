@@ -5,7 +5,7 @@ $pass = $_POST['password'];
 
 if (!empty($email) || !empty($pass) )
 {
-$host = "db4free.net";
+$host = "db4free.net:3306";
 $dbusername = "gopidfreak";
 $dbpassword = "gopiishu1730";
 $dbname = "userdataguvi";
