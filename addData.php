@@ -1,12 +1,11 @@
 <?php
 
-$uname = $_POST['username'];
-$email  = $_POST['email'];
+$user  = $_POST['username'];
+$email = $_POST['email'];
 $pass = $_POST['password'];
 
-if (!empty($uname1) || !empty($email) || !empty($pass) )
+if (!empty($user) || !empty($email)||!empty($con) || !empty($pass))
 {
-
 $host = "db4free.net:3306";
 $dbusername = "gopidfreak";
 $dbpassword = "gopiishu1730";
@@ -20,28 +19,14 @@ if (mysqli_connect_error()){
     . mysqli_connect_error());
 }
 else{
-//Prepare statement
-     $stmt = $conn->prepare("SELECT Email_Id From userInformation Where Email_Id = ? Limit 1");
-     $stmt->bind_param("s", $email);
-     $stmt->execute();
-     $stmt->bind_result($email);
-     $stmt->store_result();
-     $rnum = $stmt->num_rows;
-     //checking username
-      if ($rnum==0) {
-      $stmt->close();
-      $stmt = $conn->prepare("INSERT INTO userInformation (`UserName`, `Email_Id`, `Password`) VALUES (?,?,?)");
-      $stmt->bind_param("sss", $uname,$email,$pass);
-      $stmt->execute();
-      echo "1";
-     } else {
-      echo "0";
-     }
-     $stmt->close();
-     $conn->close();
-    }
-} else {
- echo "All field are required";
- die();
+		$check = "INSERT INTO userInformation (`UserName`, `Email_Id`, `Password`) VALUES ('$user','$email','$pass')";
+		if ($conn->query($check) === TRUE) {
+            echo "Logged In Successfully!";
+          } else {
+            echo "Error Occured: " . $conn->error;
+          }
+          
+          $conn->close();
+	}
 }
 ?>
