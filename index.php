@@ -1,1 +1,4 @@
-<?php include_once('./home.html'); ?>
+<?php 
+header('Access-Control-Allow-Headers: Content-Type');
+include_once('./home.html');
+?>
