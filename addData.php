@@ -4,7 +4,7 @@ $user  = $_POST['username'];
 $email = $_POST['email'];
 $pass = $_POST['password'];
 
-if (!empty($user) || !empty($email)||!empty($con) || !empty($pass))
+if (!empty($user) || !empty($email) || !empty($pass))
 {
 $host = "db4free.net:3306";
 $dbusername = "gopidfreak";
