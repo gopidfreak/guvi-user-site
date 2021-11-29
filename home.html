@@ -144,6 +144,14 @@
             }
             if(name&&email&&password)
             {
+                var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var result = emailPattern.test(email);
+                if(result==true)
+                {
+                    var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                var pasResult = password.match(paswd);
+                if(pasResult!=null)
+                {
                 var Data;
                 console.log("-=-=All True-=-");
                 var httpr = new XMLHttpRequest();
@@ -167,6 +175,12 @@
                             }
                     }
                 }
+                }
+                }
+                    else
+                    {
+                        alert("Invalid Credentials");
+                    }
             }
         }
         function nameValidate()
