@@ -5,7 +5,7 @@ $pass = $_POST['password'];
 
 if (!empty($email) || !empty($pass) )
 {
-$host = "localhost";
+$host = "192.168.30.23";
 $dbusername = "root";
 $dbpassword = "";
 $dbname = "user_data";
