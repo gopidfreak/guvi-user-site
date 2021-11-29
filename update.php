@@ -9,7 +9,7 @@ $email = $_POST['email'];
 
 if (!empty($age) || !empty($gender)||!empty($con) || !empty($addr)|| !empty($email) )
 {
-$host = "db4free.net";
+$host = "db4free.net:3306";
 $dbusername = "gopidfreak";
 $dbpassword = "gopiishu1730";
 $dbname = "userdataguvi";
