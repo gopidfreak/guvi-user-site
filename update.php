@@ -9,7 +9,7 @@ $email = $_POST['email'];
 
 if (!empty($age) || !empty($gender)||!empty($con) || !empty($addr)|| !empty($email) )
 {
-$host = "localhost";
+$host = "192.168.30.23";
 $dbusername = "root";
 $dbpassword = "";
 $dbname = "user_data";
