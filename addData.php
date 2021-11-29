@@ -7,10 +7,10 @@ $pass = $_POST['password'];
 if (!empty($uname1) || !empty($email) || !empty($pass) )
 {
 
-$host = "192.168.30.23";
+$host = "db4free.net";
 $dbusername = "root";
 $dbpassword = "";
-$dbname = "user_data";
+$dbname = "userdataguvi";
 
 // Create connection
 $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
