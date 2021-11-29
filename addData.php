@@ -8,8 +8,8 @@ if (!empty($uname1) || !empty($email) || !empty($pass) )
 {
 
 $host = "db4free.net";
-$dbusername = "root";
-$dbpassword = "";
+$dbusername = "gopidfreak";
+$dbpassword = "gopiishu1730";
 $dbname = "userdataguvi";
 
 // Create connection
