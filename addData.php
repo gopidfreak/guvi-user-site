@@ -21,7 +21,7 @@ if (mysqli_connect_error()){
 else{
 		$check = "INSERT INTO userInformation (`UserName`, `Email_Id`, `Password`) VALUES ('$user','$email','$pass')";
 		if ($conn->query($check) === TRUE) {
-            echo "Logged In Successfully!";
+            echo "1";
           } else {
             echo "Error Occured: " . $conn->error;
           }
