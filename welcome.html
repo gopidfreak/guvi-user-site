@@ -1,0 +1,214 @@
+<html>
+
+<head>
+    <title>
+        Welcome
+    </title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/home.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6291eab127.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container shadow maincon">
+        <div class="row">
+            <div class="col-12 maincol">
+                <h1 class="text-center welcome">welcome! <span class="s1" id="s1">Gopinath</span></h1>
+                <h5 class="last">Last Logged In : <span class="s2" id="s2"></span></h5>
+            </div>
+            <div class="col-12 subcol">
+                <button class="b1" onclick="hideAndShow()">+UpdateDetails</button>
+                <form autocomplete="off" class="text-center" onsubmit="return false" id="form" style="display: none;">
+                    <input type="text" class="form-control name" onkeypress="return isNumberKey(event)" id="age" placeholder="Enter The Age" onkeyup="ageValidate()" /><span class="agespan" id="agespan" style="display: none;">Invalid Age</span>
+                    <p style="margin-bottom: 0;color: #51B8A3;cursor: pointer;" id="pgender">Gender</p>
+                    <div class="mb-2" id="radiogender">
+                        <input type="radio" class="radio" name="gender" onchange="radioValidate(event)" value="Male">Male
+                        <input type="radio" class="radio" name="gender" onchange="radioValidate(event)" value="Female">Female
+                        <input type="radio" class="radio" name="gender" onchange="radioValidate(event)" value="Transgender">Others
+                        </div>
+                    <input type="text" class="form-control name" onkeypress="isNumberKey(event)" id="con" placeholder="Enter The Contact" onkeyup="conValidate()" />
+                    <textarea type="text" class="form-control name"  id="addr" placeholder="Enter The Address" onkeyup="addrValidate()"></textarea>
+                    <button class="b1" style="width: 100px;" onclick="validate()">Save</button>
+                </form>
+
+                <button class="b1 home" onclick="back()">Back to home</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // for display logged id
+        var gender;
+        var date = new Date();
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var yearVal = date.getFullYear();
+        console.log(yearVal);
+        var day = date.getDay();
+        console.log(day);
+        var monthVal = date.getMonth();
+        console.log(monthVal);
+        var dateVal = date.getDate();
+        console.log(dateVal);
+        var finalDay = days[day];
+        var finalMonth = months[monthVal];
+        var finalDate = finalDay + ' ' + finalMonth + ' ' + dateVal + ' ' + yearVal;
+        console.log('-=-=-=-=-', finalDate);
+        document.getElementById('s2').innerHTML = finalDate;
+        // for display the user name
+        var getName = localStorage.getItem('logedUser');
+        console.log(getName);
+        var splitName = getName.split("@");
+        var finalName = splitName[0].charAt(0).toUpperCase() + splitName[0].slice(1).toLowerCase();
+        document.getElementById('s1').innerHTML = finalName;
+        var getAddr = JSON.parse(localStorage.getItem('addrOfTheUsers'));
+        console.log(getAddr);
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function isTextKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 32 && (charCode < 65 || charCode > 122)) {
+                return false;
+            }
+            return true;
+        }
+        function radioValidate(event)
+        {
+            gender=event.target.value;
+            console.log(gender)
+        }
+        //adding student
+        function validate() {
+            var contact = document.getElementById('con').value;
+            var age= document.getElementById('age').value;
+            var Gender = gender;
+            var address = document.getElementById('addr').value;
+            if (age) {
+                if (age > 15 && age < 100) {
+                    document.getElementById('age').style = "";
+                    document.getElementById('agespan').style = "display : none;";
+                } else {
+                    document.getElementById('age').style = "border-color:red;border-style:solid;";
+                    document.getElementById('agespan').style = "display : block;";
+                }
+            } else {
+                document.getElementById('age').style = "border-color:red;border-style:solid;";
+                document.getElementById('age').placeholder = 'Age is Required';
+            }
+            if (contact) {
+                document.getElementById('con').style = "";
+            } else {
+                document.getElementById('con').style = "border-color:red;border-style:solid;";
+                document.getElementById('con').placeholder = 'Contact is Required';
+            }
+            if (address) {
+                document.getElementById('addr').style = "";
+            } else {
+                document.getElementById('addr').style = "border-color:red;border-style:solid;";
+                document.getElementById('addr').placeholder = 'Address is Required';
+            }
+            if (age && gender && contact && address) {
+                var httpr = new XMLHttpRequest();
+                httpr.open("POST","./update.php",true);
+                httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                httpr.onreadystatechange=function(){
+                    if(httpr.readyState==4 && httpr.status==200)
+                    {
+                        console.log(httpr.responseText);
+                        document.getElementById('form').reset();
+                        alert(httpr.responseText)
+                    }
+                }
+                httpr.send("age="+age+"&gender="+gender+"&contact="+contact+"&address="+address+"&email="+getName);
+            }
+        }
+        //on keyup
+        function nameValidate() {
+            var name = document.getElementById('name').value;
+            if (name) {
+                if (name.length > 2) {
+                    document.getElementById('namespan').style = "display : none;";
+                    document.getElementById('name').style = "";
+                } else {
+                    document.getElementById('name').style = "border-color:red;border-style:solid;";
+                    document.getElementById('namespan').style = "display : block;";
+                    dsfdsfsdfsdfds
+                }
+            } else {
+                document.getElementById('name').style = "border-color:red;border-style:solid;";
+                document.getElementById('name').placeholder = 'Name is Required'
+                document.getElementById('namespan').style = "display : none;";
+            }
+        }
+        //on keyup
+        function ageValidate() {
+            var age = document.getElementById('age').value;
+            if (age) {
+                if (age > 15 && age < 100) {
+                    document.getElementById('age').style = "";
+                    document.getElementById('agespan').style = "display : none;";
+                } else {
+                    document.getElementById('age').style = "border-color:red;border-style:solid;";
+                    document.getElementById('agespan').style = "display : block;";
+                }
+            } else {
+                document.getElementById('age').style = "border-color:red;border-style:solid;";
+                document.getElementById('age').placeholder = 'Age is Required'
+            }
+        }
+        //on keyup
+        function conValidate() {
+            var contact = document.getElementById('con').value;
+            if(contact)
+            {
+                var phoneno = /^\d{10}$/;
+                var conResult = contact.match(phoneno);
+                if(conResult ==null)
+                {
+                    document.getElementById('con').style = "border-color:red;border-style:solid;";
+                }
+                else{
+                    document.getElementById('con').style = "";
+                }
+            }
+            else {
+                document.getElementById('con').style = "border-color:red;border-style:solid;";
+                document.getElementById('con').placeholder = 'Contact is Required';
+            }
+        }
+        //on keyup
+        function addrValidate() {
+            var address = document.getElementById('addr').value;
+            if (address) {
+                document.getElementById('addr').style = "";
+            } else {
+                document.getElementById('addr').style = "border-color:red;border-style:solid;";
+                document.getElementById('addr').placeholder = 'address is Required';
+            }
+        }
+        //to display the add form
+        function hideAndShow() {
+            document.getElementById('form').style = " ";
+            document.getElementById('form1').style = "display:none;";
+            document.getElementById('remove').style = "display:none;";
+            document.getElementById('remove1').style = "display:none;";
+        }
+        //Viewing Student details
+
+        function back() {
+            window.location.href = './home.html';
+        }
+
+    </script>
+</body>
+
+</html>

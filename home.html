@@ -1,0 +1,425 @@
+<html>
+<head>
+    <title>
+        Home-Page
+    </title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6291eab127.js" crossorigin="anonymous"></script>
+    <!-- <link rel="shortcut icon" type="image/png" href="./logo.png"/> -->
+</head>
+<body>
+    <div class="container maincon">
+        <div class="row shadow">
+            <div class="col-5 left" id="left">
+                 <h2 class="lefthead">Welcome back!</h2>
+                 <p class="p1" id="keep">To keep connected with us please login with your personal info</p>
+                 <div class="text-center">
+                 <button class="b1" onclick="hideAndShow()" id="signupbutton">SIGN UP</button>
+                 <button class="b1" onclick="hideAndShow1()" id="signinbutton" style="display: none;">SIGN IN</button>
+                 </div>
+            </div>
+            <div class="col-7 right">
+                 <h2 class="righthead" id="head">Create Account</h2>
+                 <form autocomplete="off" class="text-center" onsubmit="return false" id="signin">
+                    <a style="color:black;" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f shadow"></i></a><a style="color:black;" href="https://www.google.com/account/about/" target="_blank"><i class="fab fa-google-plus-g shadow"></i></a><a style="color:black;" href="https://in.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in shadow"></i></a>
+                    <p class="acct">Or use your email for registration</p>
+                    <input type="text" class="form-control register" id="name" onkeypress="return isTextKey(event)" onkeyup="nameValidate()" placeholder="Name"/><span class="namespan shadow" id="namespan" style="display: none;">Name should be long</span>
+                    <input type="email" class="form-control register" onkeyup="emailValidate()" id="email" placeholder="Email"/><span style="display: none;" id="mailspan" class="mailspan shadow">Inavlid Email</span>
+                    <input type="password" class="form-control register" id="pass" onkeyup="passValidate()" placeholder="Password"/><span style="display: none;" class="passpan shadow" id="passpan">Password must contain 7 to 15 characters which contain at least one numeric digit and a special character</span>
+                    <button class="b2" onclick="validateSignIn()">SIGN IN</button>
+                 </form>
+                 <form autocomplete="off" class="text-center" onsubmit="return false" id="signup" style="display: none;">
+                  <i class="fab fa-facebook-f shadow"></i><i class="fab fa-google-plus-g shadow"></i><i class="fab fa-linkedin-in shadow"></i>
+                  <p class="acct" id="use">Or use your email for registration</p>
+                  <input type="text" class="form-control register" id="name1" onkeypress="return isTextKey(event)" onkeyup="nameValidate1()" placeholder="Name"/><span class="namespan shadow" id="namespan1" style="display: none;">Name should be long</span>
+                  <input type="email" class="form-control register" onkeyup="emailValidate1()" id="email1" placeholder="Email"/><span style="display: none;" id="mailspan2" class="mailspan shadow">Inavlid Email</span><span class="mailspan shadow" id="mailspan3" style="display: none;">Required</span>
+                  <input type="password" class="form-control register" id="pass1" onkeyup="passValidate1()" placeholder="Password"/><span style="display: none;" class="passpan shadow" id="passpan1">Password must contain 7 to 15 characters which contain at least one numeric digit and a special character</span>
+                  <button class="b2" onclick="validateSignUp()">SIGN UP</button>
+               </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var gender;
+        function isNumberKey(evt)
+        {
+        	var charCode = (evt.which) ? evt.which : event.keyCode
+        	if (charCode > 31 && (charCode < 48 || charCode > 57))
+            {
+        	return false;
+            }
+        	return true;
+        }
+        function isTextKey(evt)
+        {
+        	var charCode = (evt.which) ? evt.which : event.keyCode
+        	if (charCode > 31 && (charCode < 65 || charCode > 122))
+            {
+        	return false;
+            }
+        	return true;
+        }
+        function validateSignIn()
+        {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('pass').value;
+            var nameRes = false;
+            var emailRes = false;
+            var passwordRes = false;
+            // var contact = document.getElementById('con').value;
+            // var address = document.getElementById('addr').value;
+            if(name)
+            {
+                if(name.length >2)
+                {
+                    document.getElementById('namespan').style = "display : none;";
+                    document.getElementById('name').style = "";
+                    nameRes=true;
+                }
+                else
+                {
+                    document.getElementById('name').style = "border-color:red;border-style:solid;";
+                    document.getElementById('namespan').style = "display : block;";
+                    nameRes = false
+                }
+            }
+            else{
+                document.getElementById('name').style = "border-color:red;border-style:solid;";
+                document.getElementById('name').placeholder = 'Name is Required'
+                nameRes = false
+            }
+            if(email)
+            {
+                var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var result = emailPattern.test(email);
+                if(result==true)
+                {
+                    document.getElementById('email').style = " ";
+                    document.getElementById('mailspan').style = "display : none;";
+                    document.getElementById('email').placeholder = 'Email';
+                    emailRes=true;
+                }
+                else
+                {
+                    document.getElementById('email').style = "border-color:red;border-style:solid;";
+                    document.getElementById('mailspan').style = "display : block;";
+                    emailRes = false
+                }
+            }
+            else
+            {
+                document.getElementById('email').style = "border-color:red;border-style:solid;";
+                document.getElementById('email').placeholder = 'Email is Required';
+                emailRes = false
+            }
+            if(password)
+            {
+                var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                var pasResult = password.match(paswd);
+                if(pasResult==null)
+                {
+                    document.getElementById('pass').style = "border-color:red;border-style:solid;";
+                    document.getElementById('passpan').style = "display : block;";
+                    document.getElementById('pass').placeholder = "Password";
+                    passwordRes=true;
+                }
+                else
+                {
+                    document.getElementById('pass').style = " ";
+                    document.getElementById('passpan').style = "display : none;";
+                    passwordRes = false
+                }
+                document.getElementById('pass').placeholder = "Password";
+            }
+            else
+            {
+                document.getElementById('pass').style = "border-color:red;border-style:solid;";
+                document.getElementById('pass').placeholder = "Password is required";
+                passwordRes = false
+            }
+            if(name&&email&&password)
+            {
+                var Data;
+                console.log("-=-=All True-=-");
+                var httpr = new XMLHttpRequest();
+                httpr.open("POST","./addData.php",true);
+                httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                httpr.onreadystatechange=function(){
+                    if(httpr.readyState==4 && httpr.status==200)
+                    {
+                        console.log(httpr.responseText);
+                        Data = httpr.responseText;
+                        if(Data=="1")
+                        {
+                            document.getElementById('signin').reset();
+                            localStorage.setItem("logedUser",email)
+                            alert("Logged In Successfully");
+                            window.location.href ="./welcome.html";
+                        }
+                        else{
+                            alert("Email Already Exists!");
+                        }
+                    }
+                }
+                httpr.send("username="+name+"&email="+email+"&password="+password);
+            }
+        }
+        function nameValidate()
+        {
+            var name = document.getElementById('name').value;
+            if(name)
+            {
+                if(name.length >2)
+                {
+                    document.getElementById('namespan').style = "display : none;";
+                    document.getElementById('name').style = "";
+                }
+                else
+                {
+                    document.getElementById('name').style = "border-color:red;border-style:solid;";
+                    document.getElementById('namespan').style = "display : block;";
+                }
+            }
+            else{
+                document.getElementById('name').style = "border-color:red;border-style:solid;";
+                document.getElementById('name').placeholder = 'Name is Required'
+            }
+        }
+        function emailValidate()
+        {
+            var email = document.getElementById('email').value;
+            if(email)
+            {
+                var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var result = emailPattern.test(email);
+                if(result==true)
+                {
+                    document.getElementById('email').style = " ";
+                    document.getElementById('mailspan').style = "display : none;";
+                }
+                else
+                {
+                    document.getElementById('email').style = "border-color:red;border-style:solid;";
+                    document.getElementById('mailspan').style = "display : block;";
+                }
+                document.getElementById('email').placeholder = 'Email is Required';
+            }
+            else
+            {
+                document.getElementById('email').style = "border-color:red;border-style:solid;";
+                document.getElementById('email').placeholder = 'Email is Required';
+            }
+        }
+        function passValidate()
+        {
+            var password = document.getElementById('pass').value;
+            if(password)
+            {
+                var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                var pasResult = password.match(paswd);
+                if(pasResult==null)
+                {
+                    document.getElementById('pass').style = "border-color:red;border-style:solid;";
+                    document.getElementById('passpan').style = "display : block;";
+                }
+                else
+                {
+                    document.getElementById('pass').style = " ";
+                    document.getElementById('passpan').style = "display : none;";
+                }
+            }
+            else
+            {
+                document.getElementById('pass').style = "border-color:red;border-style:solid;";
+                document.getElementById('pass').placeholder = "Password is required";
+            }
+        }
+        function hideAndShow()
+        {
+            document.getElementById('signup').style = "display:block;";
+            document.getElementById('signin').style = "display:none;";
+            document.getElementById('left').style = "padding-top:100px;";
+            document.getElementById('use').innerHTML = "Or use your email";
+            document.getElementById('head').innerHTML = "Log in to your Account";
+            document.getElementById('signupbutton').style = "display:none;";
+            document.getElementById('signinbutton').style = "";
+            document.getElementById('keep').innerHTML ="To keep connected with us please register with your personal info";
+            
+        }
+        function hideAndShow1()
+        {
+            document.getElementById('signup').style = "display:none;";
+            document.getElementById('signin').style = "display:block;";
+            document.getElementById('head').innerHTML = "Create Account";
+            document.getElementById('left').style = "padding-top:100px;";
+            document.getElementById('signupbutton').style = "";
+            document.getElementById('signinbutton').style = "display:none;";
+            document.getElementById('keep').innerHTML ="To keep connected with us please login with your personal info";
+        }
+        function validateSignUp()
+        {
+            var signupName = document.getElementById('name1').value;
+            var signupEmail = document.getElementById('email1').value;
+            var signupPass = document.getElementById('pass1').value;
+            if(signupName)
+            {
+            if(signupName.length >2)
+            {
+                document.getElementById('namespan1').style = "display : none;";
+                document.getElementById('name1').style = "";
+            }
+            else
+            {
+                document.getElementById('name1').style = "border-color:red;border-style:solid;";
+                document.getElementById('namespan1').style = "display : block;bottom:180px;";
+            }
+            }
+            else{
+                document.getElementById('name1').style = "border-color:red;border-style:solid;";
+                document.getElementById('name1').placeholder = 'Name is Required'
+            }
+            if(signupEmail)
+            {
+                var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var result = emailPattern.test(signupEmail);
+                if(result==true)
+                {
+                    document.getElementById('email1').style = " ";
+                    document.getElementById('mailspan2').style = "display : none;";
+                }
+                else
+                {
+                    document.getElementById('email1').style = "border-color:red;border-style:solid;";
+                    document.getElementById('mailspan2').style = "display : block;bottom:126px;";
+                }
+            }
+            else
+            {
+                document.getElementById('email1').style = "border-color:red;border-style:solid;";
+                document.getElementById('mailspan3').style = "display : block;bottom:126px;";
+            }
+            if(signupPass)
+            {
+                var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                var pasResult = signupPass.match(paswd);
+                if(pasResult==null)
+                {
+                    document.getElementById('pass1').style = "border-color:red;border-style:solid;";
+                    document.getElementById('passpan1').style = "display : block;bottom:5px";
+                }
+                else
+                {
+                    document.getElementById('pass1').style = " ";
+                    document.getElementById('passpan1').style = "display : none;";
+                }
+            }
+            else
+            {
+                document.getElementById('pass1').style = "border-color:red;border-style:solid;";
+                document.getElementById('pass1').placeholder = "Password is required";
+            }
+            if(signupName&&signupEmail&&signupPass)
+            {
+                var data;
+                console.log("-=-=All True-=-");
+                var httpr = new XMLHttpRequest();
+                httpr.open("POST","./login.php",true);
+                httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                httpr.onreadystatechange=function(){
+                    if(httpr.readyState==4 && httpr.status==200)
+                    {
+                        console.log(httpr.responseText);
+                        data=httpr.responseText;
+                        if(data=="1")
+                        {
+                            localStorage.setItem("logedUser",signupEmail)
+                            alert("Logged In Successfully");
+                            window.location.href ="./welcome.html";
+                        }
+                        else{
+                            alert("Incorrect Email or Password");
+                        }
+                    }
+                }
+                httpr.send("email="+signupEmail+"&password="+signupPass);
+                document.getElementById('signin').reset();
+        }
+        }
+        function nameValidate1()
+        {
+            var signupName = document.getElementById('name1').value;
+            if(signupName)
+            {
+                if(signupName.length >2)
+                {
+                    document.getElementById('namespan1').style = "display : none;";
+                    document.getElementById('name1').style = "";
+                }
+                else
+                {
+                    document.getElementById('name1').style = "border-color:red;border-style:solid;";
+                    document.getElementById('namespan1').style = "display : block;bottom:180px;";
+                }
+            }
+            else{
+                document.getElementById('name1').style = "border-color:red;border-style:solid;";
+                document.getElementById('name1').placeholder = 'Name is Required'
+            }
+        }
+        function emailValidate1()
+                {
+                    var signupEmail = document.getElementById('email1').value;
+                    if(signupEmail)
+                    {
+                        var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                        var result = emailPattern.test(signupEmail);
+                        if(result==true)
+                        {
+                            document.getElementById('email1').style = " ";
+                            document.getElementById('mailspan2').style = "display : none;";
+                        }
+                        else
+                        {
+                            document.getElementById('email1').style = "border-color:red;border-style:solid;";
+                            document.getElementById('mailspan2').style = "display : block;bottom:126px;";
+                        }
+                        document.getElementById('mailspan3').style = "display : none;";
+                    }
+                    else
+                    {
+                        document.getElementById('email').style = "border-color:red;border-style:solid;";
+                        document.getElementById('mailspan3').style = "display : block;bottom:126px;";
+                    }
+                }
+        function passValidate1()
+        {
+            var signupPass = document.getElementById('pass1').value;
+            if(signupPass)
+            {
+                var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                var pasResult = signupPass.match(paswd);
+                if(pasResult==null)
+                {
+                    document.getElementById('pass1').style = "border-color:red;border-style:solid;";
+                    document.getElementById('passpan1').style = "display : block;bottom:5px";
+                }
+                else
+                {
+                    document.getElementById('pass1').style = " ";
+                    document.getElementById('passpan1').style = "display : none;";
+                }
+            }
+            else
+            {
+                document.getElementById('pass1').style = "border-color:red;border-style:solid;";
+                document.getElementById('pass1').placeholder = "Password is required";
+            }
+        }
+    </script>
+</body>
+</html>

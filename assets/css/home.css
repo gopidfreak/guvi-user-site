@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Oxygen&display=swap&family=Caveat:wght@500');
+body{
+    background-color: #fee2f8;
+    background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
+}
+.maincol {
+    background-color :#20bf55;
+    background-image :linear-gradient(315deg, #20bf55 0%, #01baef 74%);    
+    border-radius: 10px 10px 0px 0px;
+}
+.subcol {
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+}
+.maincon {
+    border-radius: 10px !important;
+    margin-top: 3%;
+}
+.s1 {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    cursor: pointer;
+}
+.welcome {
+    font-family: 'Vollkorn', serif;
+    cursor: pointer;
+}
+.last {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+}
+.s2 {
+    color: black;
+    font-family: 'Lato', sans-serif;
+}
+.b1 {
+    background-color :#20bf55;
+    background-image :linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+    border: none;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    position: relative;
+    z-index: 6;
+    transition: 1s;
+    overflow: hidden;
+}
+.b1::after{
+    content: ' ';
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    left: 117px;
+    bottom: 0;
+    border-radius: 25px;
+    transition: 1s;
+    z-index: -1;
+}
+.b1:hover::after{
+    left: 0;
+}
+.b1:hover{
+    color: #20bf55;
+    border-color: #20bf55;
+    border-style: solid;
+    border-width: thin;
+}
+.name {
+    width: 315px;
+    background-color: whitesmoke;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 14px;
+}
+.fa-user {
+    position: relative;
+    left: 284px;
+    bottom: 28px;
+    color: #20bf55;
+}
+.name:focus{
+    border-color: #20bf55;
+    box-shadow: 0 0 10px #20bf55;
+    border-style: solid;
+    border-width: thin;
+}
+.home {
+    float: right;
+    background: #01baef;
+}
+.namespan {
+    position: absolute;
+    bottom: 285px;
+    background: #20bf55;
+    left: 751px;
+    width: 180px;
+    color: white;
+    border-radius: 20px;
+}
+.agespan {
+    position: absolute;
+    bottom: 234px;
+    background: #20bf55;
+    left: 751px;
+    width: 180px;
+    color: white;
+    border-radius: 20px;
+}
+.remove {
+    background-color: whitesmoke;
+    border: none;
+    margin-right: 5px;
+    width: 143px;
+    padding-left: 5px;
+}
+.remove:focus{
+    border-color: #20bf55;
+    box-shadow: 0 0 10px #20bf55;
+    border-style: solid;
+    border-width: thin;
+    background-color: white;
+    text-align: center;
+}
