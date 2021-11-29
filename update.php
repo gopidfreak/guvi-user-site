@@ -22,7 +22,7 @@ if (mysqli_connect_error()){
     . mysqli_connect_error());
 }
 else{
-		$check = "UPDATE `userinformation` SET Age='$age',Gender='$gender',Contact='$con',Address='$addr' WHERE `Email_Id` ='$email'";
+		$check = "UPDATE `userInformation` SET Age='$age',Gender='$gender',Contact='$con',Address='$addr' WHERE `Email_Id` ='$email'";
 		if ($conn->query($check) === TRUE) {
             echo "Record updated successfully";
           } else {
