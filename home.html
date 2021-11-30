@@ -18,8 +18,8 @@
                  <h2 class="lefthead">Welcome back!</h2>
                  <p class="p1" id="keep">To keep connected with us please login with your personal info</p>
                  <div class="text-center">
-                 <button class="b1" onclick="hideAndShow()" id="signupbutton">SIGN UP</button>
-                 <button class="b1" onclick="hideAndShow1()" id="signinbutton" style="display: none;">SIGN IN</button>
+                 <button class="b1" onclick="hideAndShow()" id="signupbutton">SIGN IN</button>
+                 <button class="b1" onclick="hideAndShow1()" id="signinbutton" style="display: none;">SIGN UP</button>
                  </div>
             </div>
             <div class="col-7 right">
@@ -30,7 +30,7 @@
                     <input type="text" class="form-control register" id="name" onkeypress="return isTextKey(event)" onkeyup="nameValidate()" placeholder="Name"/><span class="namespan shadow" id="namespan" style="display: none;">Name should be long</span>
                     <input type="email" class="form-control register" onkeyup="emailValidate()" id="email" placeholder="Email"/><span style="display: none;" id="mailspan" class="mailspan shadow">Inavlid Email</span>
                     <input type="password" class="form-control register" id="pass" onkeyup="passValidate()" placeholder="Password"/><span style="display: none;" class="passpan shadow" id="passpan">Password must contain 7 to 15 characters which contain at least one numeric digit and a special character</span>
-                    <button class="b2" onclick="validateSignIn()">SIGN IN</button>
+                    <button class="b2" onclick="validateSignIn()">SIGN UP</button>
                  </form>
                  <form autocomplete="off" class="text-center" onsubmit="return false" id="signup" style="display: none;">
                   <i class="fab fa-facebook-f shadow"></i><i class="fab fa-google-plus-g shadow"></i><i class="fab fa-linkedin-in shadow"></i>
@@ -38,7 +38,7 @@
                   <input type="text" class="form-control register" id="name1" onkeypress="return isTextKey(event)" onkeyup="nameValidate1()" placeholder="Name"/><span class="namespan shadow" id="namespan1" style="display: none;">Name should be long</span>
                   <input type="email" class="form-control register" onkeyup="emailValidate1()" id="email1" placeholder="Email"/><span style="display: none;" id="mailspan2" class="mailspan shadow">Inavlid Email</span><span class="mailspan shadow" id="mailspan3" style="display: none;">Required</span>
                   <input type="password" class="form-control register" id="pass1" onkeyup="passValidate1()" placeholder="Password"/><span style="display: none;" class="passpan shadow" id="passpan1">Password must contain 7 to 15 characters which contain at least one numeric digit and a special character</span>
-                  <button class="b2" onclick="validateSignUp()">SIGN UP</button>
+                  <button class="b2" onclick="validateSignUp()">SIGN IN</button>
                </form>
             </div>
         </div>
